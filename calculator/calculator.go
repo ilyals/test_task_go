@@ -46,7 +46,6 @@ func intToRoman(num int) (string, error) {
 	return result.String(), nil
 }
 
-// Функция для выполнения арифметической операции
 func calculate(a, b int, operator string) (int, error) {
 	switch operator {
 	case "+":
@@ -70,14 +69,13 @@ func calculate(a, b int, operator string) (int, error) {
 	}
 }
 
-// Проверка, является ли строка римским числом
 func isRoman(s string) bool {
 	_, exists := romanToArabic[s]
 	return exists
 }
 
-// CalculateExpression принимает строку с выражением и возвращает результат вычисления.
 func CalculateExpression(input string) (string, error) {
+
 	// Удаляем лишние пробелы
 	input = strings.TrimSpace(input)
 	// Переводим все в верхний регистр

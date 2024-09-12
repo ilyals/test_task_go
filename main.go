@@ -2,8 +2,8 @@ package main
 
 import (
 	"bufio"
+	"calculator/calculator" // Импортируем пакет калькулятора
 	"fmt"
-	"mycalculator/calculator" // Импортируем пакет калькулятора
 	"os"
 	"strings"
 )
