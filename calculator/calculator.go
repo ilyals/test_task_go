@@ -27,13 +27,13 @@ func romanToInt(s string) (int, error) {
 	if val, exists := romanToArabic[s]; exists {
 		return val, nil
 	}
-	return 0, errors.New("некорректное римское число")
+	panic("Некорректное римское число")
 }
 
 // Преобразование арабских чисел в римские
 func intToRoman(num int) (string, error) {
 	if num <= 0 {
-		return "", errors.New("римские числа не могут быть меньше 1")
+		panic("Римские числа не могут быть меньше 1")
 	}
 
 	var result strings.Builder
@@ -83,7 +83,7 @@ func CalculateExpression(input string) (string, error) {
 
 	// Проверяем на наличие нескольких операторов или пустую строку
 	if input == "" {
-		return "", errors.New("строка не является математической операцией")
+		panic("Строка не является математической операцией")
 	}
 
 	// Подсчет количества операторов
@@ -92,10 +92,10 @@ func CalculateExpression(input string) (string, error) {
 
 	// Проверка на наличие слишком большого числа операторов
 	if operatorCount == 0 {
-		return "", errors.New("строка не является математической операцией")
+		panic("Строка не является математической операцией")
 	}
 	if operatorCount > 1 {
-		return "", errors.New("формат математической операции не удовлетворяет заданию — два операнда и один оператор")
+		panic("Формат математической операции не удовлетворяет заданию — два операнда и один оператор")
 	}
 
 	// Возможные операторы
@@ -114,7 +114,7 @@ func CalculateExpression(input string) (string, error) {
 
 	// Если оператор не найден, возвращаем ошибку
 	if operator == "" {
-		return "", errors.New("некорректный формат выражения. Ожидается формат: число оператор число")
+		panic("Некорректный формат выражения. Ожидается формат: число оператор число")
 	}
 
 	// Разделяем строку на левую и правую части вокруг оператора
@@ -126,7 +126,8 @@ func CalculateExpression(input string) (string, error) {
 	isRightRoman := isRoman(right)
 
 	if isLeftRoman != isRightRoman {
-		return "", errors.New("нельзя смешивать римские и арабские числа")
+		panic("Ошибка: нельзя смешивать арабские и римские цифры в одном выражении!")
+		//return "", errors.New("нельзя смешивать римские и арабские числа")
 	}
 
 	// Выполняем вычисление
@@ -145,7 +146,7 @@ func CalculateExpression(input string) (string, error) {
 
 		// Проверка диапазона для римских чисел
 		if num1 < 1 || num1 > 10 || num2 < 1 || num2 > 10 {
-			return "", errors.New("римские числа должны быть в диапазоне от 1 до 10")
+			panic("Римские числа должны быть в диапазоне от 1 до 10")
 		}
 
 		result, err = calculate(num1, num2, operator)
@@ -155,7 +156,7 @@ func CalculateExpression(input string) (string, error) {
 
 		// Преобразуем результат обратно в римское число
 		if result < 1 {
-			return "", errors.New("римские числа не поддерживают значения меньше 1")
+			panic("Римские числа не поддерживают значения меньше 1")
 		}
 
 		romanResult, err := intToRoman(result)
@@ -167,17 +168,17 @@ func CalculateExpression(input string) (string, error) {
 		// Если оба числа арабские
 		num1, err := strconv.Atoi(left)
 		if err != nil {
-			return "", errors.New("некорректное первое арабское число")
+			panic("Некорректное первое арабское число")
 		}
 
 		num2, err := strconv.Atoi(right)
 		if err != nil {
-			return "", errors.New("некорректное второе арабское число")
+			panic("Некорректное второе арабское число")
 		}
 
 		// Проверка диапазона для римских чисел
 		if num1 < 1 || num1 > 10 || num2 < 1 || num2 > 10 {
-			return "", errors.New("арабские числа должны быть в диапазоне от 1 до 10")
+			panic("Арабские числа должны быть в диапазоне от 1 до 10")
 		}
 
 		result, err = calculate(num1, num2, operator)
