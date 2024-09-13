@@ -65,7 +65,7 @@ func calculate(a, b int, operator string) (int, error) {
 		}
 		return a % b, nil
 	default:
-		return 0, errors.New("неизвестная операция")
+		panic("Неизвестная операция")
 	}
 }
 
